@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vista", "TPFinalDAS\Vista.csproj", "{DA7C873F-123F-4E34-ACBD-F1340F06BFE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Modelo\Modelo.csproj", "{31A0495F-C7E0-4226-B31B-1805651FFAA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controladora", "Controladora\Controladora.csproj", "{EC385E38-D657-47F0-ACE2-4939ECBCE74B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA7C873F-123F-4E34-ACBD-F1340F06BFE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA7C873F-123F-4E34-ACBD-F1340F06BFE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA7C873F-123F-4E34-ACBD-F1340F06BFE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA7C873F-123F-4E34-ACBD-F1340F06BFE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A0495F-C7E0-4226-B31B-1805651FFAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A0495F-C7E0-4226-B31B-1805651FFAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A0495F-C7E0-4226-B31B-1805651FFAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A0495F-C7E0-4226-B31B-1805651FFAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC385E38-D657-47F0-ACE2-4939ECBCE74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC385E38-D657-47F0-ACE2-4939ECBCE74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC385E38-D657-47F0-ACE2-4939ECBCE74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC385E38-D657-47F0-ACE2-4939ECBCE74B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1F2FA65-571B-4385-AA92-D2AA0916BDD2}
+	EndGlobalSection
+EndGlobal
