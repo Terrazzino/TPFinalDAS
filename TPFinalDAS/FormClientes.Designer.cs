@@ -59,7 +59,7 @@
             dgvClientes.Location = new Point(143, 32);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.RowHeadersWidth = 51;
-            dgvClientes.Size = new Size(474, 291);
+            dgvClientes.Size = new Size(558, 291);
             dgvClientes.TabIndex = 21;
             dgvClientes.CellClick += dgvClientes_CellClick;
             // 
@@ -161,7 +161,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(638, 357);
+            ClientSize = new Size(715, 357);
             Controls.Add(label4);
             Controls.Add(txtContactoCliente);
             Controls.Add(lblLeyenda);

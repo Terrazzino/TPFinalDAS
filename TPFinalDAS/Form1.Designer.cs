@@ -39,7 +39,16 @@
             label1 = new Label();
             label2 = new Label();
             button1 = new Button();
+            groupBox1 = new GroupBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
             menuStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -48,7 +57,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menúToolStripMenuItem, facturarProductosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(437, 28);
+            menuStrip1.Size = new Size(644, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -134,11 +143,92 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Enabled = false;
+            groupBox1.Location = new Point(401, 31);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(231, 224);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Instrucciones de Uso";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 23);
+            label3.Name = "label3";
+            label3.Size = new Size(166, 20);
+            label3.TabIndex = 0;
+            label3.Text = "1- Registre la Categoria";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 45);
+            label4.Name = "label4";
+            label4.Size = new Size(161, 20);
+            label4.TabIndex = 1;
+            label4.Text = "2- Registre el Producto";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 65);
+            label5.Name = "label5";
+            label5.Size = new Size(139, 20);
+            label5.TabIndex = 2;
+            label5.Text = "3- Registr el Cliente";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 85);
+            label6.Name = "label6";
+            label6.Size = new Size(169, 20);
+            label6.TabIndex = 3;
+            label6.Text = "4- Registre el Proveedor";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 105);
+            label7.Name = "label7";
+            label7.Size = new Size(158, 20);
+            label7.TabIndex = 4;
+            label7.Text = "5- Realice una compra";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 125);
+            label8.Name = "label8";
+            label8.Size = new Size(154, 20);
+            label8.TabIndex = 5;
+            label8.Text = "en la sección Facturar ";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(9, 145);
+            label9.Name = "label9";
+            label9.Size = new Size(142, 20);
+            label9.TabIndex = 6;
+            label9.Text = "6- Revise el Reporte";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 254);
+            ClientSize = new Size(644, 254);
+            Controls.Add(groupBox1);
             Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -149,6 +239,8 @@
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,5 +258,13 @@
         private Label label1;
         private Label label2;
         private Button button1;
+        private GroupBox groupBox1;
+        private Label label3;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
     }
 }

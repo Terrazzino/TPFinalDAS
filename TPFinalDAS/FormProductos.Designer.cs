@@ -70,7 +70,7 @@
             dgvProductos.Location = new Point(306, 32);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 51;
-            dgvProductos.Size = new Size(474, 133);
+            dgvProductos.Size = new Size(833, 133);
             dgvProductos.TabIndex = 21;
             dgvProductos.CellClick += dgvProductos_CellClick;
             // 
@@ -207,7 +207,7 @@
             dgvProductosImportados.Location = new Point(306, 191);
             dgvProductosImportados.Name = "dgvProductosImportados";
             dgvProductosImportados.RowHeadersWidth = 51;
-            dgvProductosImportados.Size = new Size(474, 134);
+            dgvProductosImportados.Size = new Size(833, 134);
             dgvProductosImportados.TabIndex = 30;
             dgvProductosImportados.CellClick += dgvProductosImportados_CellClick;
             // 
@@ -260,7 +260,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(805, 365);
+            ClientSize = new Size(1163, 365);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);

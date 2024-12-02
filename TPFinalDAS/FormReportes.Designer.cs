@@ -42,7 +42,7 @@
             dgvFacturas.Location = new Point(12, 41);
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.RowHeadersWidth = 51;
-            dgvFacturas.Size = new Size(550, 225);
+            dgvFacturas.Size = new Size(592, 225);
             dgvFacturas.TabIndex = 0;
             // 
             // label1
@@ -60,7 +60,7 @@
             dgvProductosMasVendidos.Location = new Point(12, 309);
             dgvProductosMasVendidos.Name = "dgvProductosMasVendidos";
             dgvProductosMasVendidos.RowHeadersWidth = 51;
-            dgvProductosMasVendidos.Size = new Size(550, 188);
+            dgvProductosMasVendidos.Size = new Size(592, 188);
             dgvProductosMasVendidos.TabIndex = 2;
             // 
             // label2
@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(574, 512);
+            ClientSize = new Size(638, 512);
             Controls.Add(label2);
             Controls.Add(dgvProductosMasVendidos);
             Controls.Add(label1);

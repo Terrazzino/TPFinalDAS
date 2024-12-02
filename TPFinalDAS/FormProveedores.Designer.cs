@@ -77,13 +77,13 @@
             dgvProveedor.Location = new Point(168, 32);
             dgvProveedor.Name = "dgvProveedor";
             dgvProveedor.RowHeadersWidth = 51;
-            dgvProveedor.Size = new Size(474, 291);
+            dgvProveedor.Size = new Size(682, 291);
             dgvProveedor.TabIndex = 34;
             dgvProveedor.CellClick += dgvProveedor_CellClick;
             // 
             // btnEliminarCliente
             // 
-            btnEliminarCliente.Location = new Point(523, 329);
+            btnEliminarCliente.Location = new Point(731, 325);
             btnEliminarCliente.Name = "btnEliminarCliente";
             btnEliminarCliente.Size = new Size(119, 33);
             btnEliminarCliente.TabIndex = 33;
@@ -93,7 +93,7 @@
             // 
             // btnModificarModificarCliente
             // 
-            btnModificarModificarCliente.Location = new Point(347, 329);
+            btnModificarModificarCliente.Location = new Point(445, 329);
             btnModificarModificarCliente.Name = "btnModificarModificarCliente";
             btnModificarModificarCliente.Size = new Size(119, 33);
             btnModificarModificarCliente.TabIndex = 32;
@@ -180,7 +180,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(657, 412);
+            ClientSize = new Size(862, 412);
             Controls.Add(checkListProductos);
             Controls.Add(label5);
             Controls.Add(label4);

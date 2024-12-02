@@ -126,7 +126,7 @@
             dgvCategorias.Location = new Point(143, 32);
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.RowHeadersWidth = 51;
-            dgvCategorias.Size = new Size(474, 238);
+            dgvCategorias.Size = new Size(437, 238);
             dgvCategorias.TabIndex = 10;
             dgvCategorias.CellClick += dgvCategorias_CellClick;
             // 
@@ -143,7 +143,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(636, 316);
+            ClientSize = new Size(598, 316);
             Controls.Add(lblLeyenda);
             Controls.Add(dgvCategorias);
             Controls.Add(btnEliminarCategoria);

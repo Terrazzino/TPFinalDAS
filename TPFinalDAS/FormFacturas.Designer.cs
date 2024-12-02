@@ -59,13 +59,13 @@
             dgvFactura.Location = new Point(168, 32);
             dgvFactura.Name = "dgvFactura";
             dgvFactura.RowHeadersWidth = 51;
-            dgvFactura.Size = new Size(474, 133);
+            dgvFactura.Size = new Size(684, 133);
             dgvFactura.TabIndex = 50;
             dgvFactura.CellClick += dgvFactura_CellClick;
             // 
             // btnEliminarFactura
             // 
-            btnEliminarFactura.Location = new Point(509, 171);
+            btnEliminarFactura.Location = new Point(719, 171);
             btnEliminarFactura.Name = "btnEliminarFactura";
             btnEliminarFactura.Size = new Size(133, 33);
             btnEliminarFactura.TabIndex = 49;
@@ -75,7 +75,7 @@
             // 
             // btnModificarFactura
             // 
-            btnModificarFactura.Location = new Point(338, 171);
+            btnModificarFactura.Location = new Point(439, 171);
             btnModificarFactura.Name = "btnModificarFactura";
             btnModificarFactura.Size = new Size(133, 33);
             btnModificarFactura.TabIndex = 48;
@@ -144,7 +144,7 @@
             // 
             // btnEliminarDetalle
             // 
-            btnEliminarDetalle.Location = new Point(509, 403);
+            btnEliminarDetalle.Location = new Point(719, 403);
             btnEliminarDetalle.Name = "btnEliminarDetalle";
             btnEliminarDetalle.Size = new Size(133, 33);
             btnEliminarDetalle.TabIndex = 59;
@@ -185,9 +185,9 @@
             label7.AutoSize = true;
             label7.Location = new Point(12, 207);
             label7.Name = "label7";
-            label7.Size = new Size(663, 20);
+            label7.Size = new Size(843, 20);
             label7.TabIndex = 63;
-            label7.Text = "_____________________________________________________________________________________________________________";
+            label7.Text = "___________________________________________________________________________________________________________________________________________";
             // 
             // lblDetalles
             // 
@@ -228,7 +228,7 @@
             dgvDetalles.Location = new Point(168, 263);
             dgvDetalles.Name = "dgvDetalles";
             dgvDetalles.RowHeadersWidth = 51;
-            dgvDetalles.Size = new Size(474, 134);
+            dgvDetalles.Size = new Size(684, 134);
             dgvDetalles.TabIndex = 68;
             dgvDetalles.CellClick += dgvDetalles_CellClick;
             // 
@@ -236,7 +236,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(685, 476);
+            ClientSize = new Size(869, 476);
             Controls.Add(dgvDetalles);
             Controls.Add(cmbProductos);
             Controls.Add(lblLeyenda);
