@@ -38,7 +38,7 @@ namespace Vista
                 Numero = f.Numero,
                 Fecha = f.Fecha,
                 Cliente = f.ClienteDeFactura.Nombre,
-                Total = f.CalcularTotal().ToString(),
+               // Total = f.CalcularTotal().ToString(),
             }).ToList();
 
             dgvFactura.DataSource = null;
@@ -57,11 +57,11 @@ namespace Vista
             {
                 var detalles = facturaSeleccionada.DetallesDeFactura.Select(d => new
                 {
-                    Nombre = d.ProductoDelDetalle.Nombre,
+                    Nombre = d.Producto.Nombre,
                     Cantidad = d.Cantidad,
                     PrecioUnitario = d.PrecioUnitario,
                     SubTotal = d.Subtotal,
-                    NroFactura = d.FacturaDelDetalle.Numero,
+                    //NroFactura = d.Factura.Numero,
                 }).ToList();
 
                 dgvDetalles.DataSource = null;
@@ -79,11 +79,11 @@ namespace Vista
 
             var detalles = facturaSeleccionada.DetallesDeFactura.Select(d => new
             {
-                Nombre = d.ProductoDelDetalle.Nombre,
+                Nombre = d.Producto.Nombre,
                 Cantidad = d.Cantidad,
                 PrecioUnitario = d.PrecioUnitario,
                 SubTotal = d.Subtotal,
-                NroFactura = d.FacturaDelDetalle.Numero,
+            //    NroFactura = d.FacturaDelDetalle.Numero,
             }).ToList();
 
             dgvDetalles.DataSource = null;
@@ -92,7 +92,7 @@ namespace Vista
         }
         private void dgvDetalles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            detalleSeleccionado = controladora.LeerDetalles().FirstOrDefault(x => x.ProductoDelDetalle.Nombre == dgvDetalles.Rows[e.RowIndex].Cells[0].Value.ToString());
+       //     detalleSeleccionado = controladora.LeerDetalles().FirstOrDefault(x => x.ProductoDelDetalle.Nombre == dgvDetalles.Rows[e.RowIndex].Cells[0].Value.ToString());
 
         }
 
@@ -125,7 +125,7 @@ namespace Vista
                     DetalleFactura detalle = new DetalleFactura()
                     {
                         Cantidad = int.Parse(numCantidad.Value.ToString()),
-                        ProductoDelDetalle = buscarProducto,
+                        Producto = buscarProducto,
                         PrecioUnitario = buscarProducto.Precio,
                     };
                     return detalle;
@@ -196,11 +196,11 @@ namespace Vista
                 var detalle = ValidarYCrearCamposDetalle();
                 if (detalle != null)
                 {
-                    detalle.FacturaDelDetalle = facturaSeleccionada;
-                    controladora.RegistrarDetalle(facturaSeleccionada, detalle);
+             //       detalle.FacturaDelDetalle = facturaSeleccionada;
+              //      controladora.RegistrarDetalle(facturaSeleccionada, detalle);
                     ActualizarGrillaFacturasYCmbs();
                     ActualizaGrillaDetalles();
-                    lblLeyenda.Text = $"El detalle de {detalle.ProductoDelDetalle.Nombre} a sido registrado";
+             //       lblLeyenda.Text = $"El detalle de {detalle.ProductoDelDetalle.Nombre} a sido registrado";
                 }
                 else
                 {

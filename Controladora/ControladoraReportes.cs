@@ -18,9 +18,9 @@ namespace Controladora
         {
             return _context.Facturas.Include(c=>c.ClienteDeFactura).Include(d=>d.DetallesDeFactura).OrderBy(f=>f.Fecha).ToList().AsReadOnly();
         }
-        public ReadOnlyCollection<DetalleFactura> LeerProductosMasVendidos()
+        public ReadOnlyCollection<Producto> LeerProductosMasVendidos()
         {
-            return _context.DetallesFacturas.Include(p => p.ProductoDelDetalle).OrderByDescending(c => c.Cantidad).ToList().AsReadOnly();
+            return _context.Productos.Include(x=>x.DetalleFactura).ToList().AsReadOnly();//.Where(x=>x.DetallesDeFactura).Include(x=>x.DetallesDeFactura).ThenInclude(p => p.Producto).Sum().OrderByDescending(c => c.Cantidad).ToList().AsReadOnly();
         }
     }
 }

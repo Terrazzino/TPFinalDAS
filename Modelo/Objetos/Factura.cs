@@ -14,10 +14,10 @@ namespace Modelo.Objetos
         public decimal Total {  get; set; }
         public Cliente ClienteDeFactura { get; set; }
         public List<DetalleFactura> DetallesDeFactura { get; set;} = new List<DetalleFactura>();
-
+  
         public void AgregarDetalleDeLaFactura(DetalleFactura detalle)
         {
-            var validarDuplicado = DetallesDeFactura.FirstOrDefault(x=>x.ProductoDelDetalle.Nombre == detalle.ProductoDelDetalle.Nombre);
+            var validarDuplicado = DetallesDeFactura.FirstOrDefault(x=>x.Producto.Nombre == detalle.Producto.Nombre);
             if (validarDuplicado == null)
             {
                 detalle.CalcularSubtotal();
@@ -28,47 +28,29 @@ namespace Modelo.Objetos
                 validarDuplicado.Cantidad += detalle.Cantidad;
                 validarDuplicado.CalcularSubtotal();
             }
-            CalcularTotalDeFactura();
+            Total+= detalle.Subtotal;
         }
 
         public void EliminarDetalle(DetalleFactura detalle)
         {
-            var validarExistencia = DetallesDeFactura.FirstOrDefault(x=>x.ProductoDelDetalle.Nombre == detalle.ProductoDelDetalle.Nombre);
+            var validarExistencia = DetallesDeFactura.FirstOrDefault(x=>x.Producto.Nombre == detalle.Producto.Nombre);
             if (validarExistencia != null)
             {
                 validarExistencia.Cantidad -= detalle.Cantidad;
                 validarExistencia.CalcularSubtotal();
                 DetallesDeFactura.Remove(detalle);
             }
-            CalcularTotalDeFactura();
+            Total -= detalle.Subtotal;
         }
+       
+        
         public void EliminarTodosLosDetalles()
         {
             DetallesDeFactura.Clear();
-            CalcularTotalDeFactura();
-        }
-
-        public void CalcularTotalDeFactura()
-        {
             Total = 0;
-            foreach (DetalleFactura d in DetallesDeFactura)
-            {
-                Total += d.Subtotal; 
-            }
         }
 
-        public decimal CalcularTotal()
-        {
-            if (DetallesDeFactura.Count>0)
-            {
-                CalcularTotalDeFactura();
-                return Total;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+    
 
         public override string ToString()
         {

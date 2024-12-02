@@ -106,7 +106,7 @@ namespace Vista
                     Descripcion = txtDescripcionProducto.Text,
                     Precio = decimal.Parse(txtPrecioProducto.Text),
                     Stock = int.Parse(txtStockProducto.Text),
-                    CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text)
+      //              CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text)
                 };
                 return producto;
             }
@@ -127,7 +127,7 @@ namespace Vista
                     Descripcion = txtDescripcionProducto.Text,
                     Precio = decimal.Parse(txtPrecioProducto.Text),
                     Stock = int.Parse(txtStockProducto.Text),
-                    CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text),
+   //                 CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text),
                     Pais = txtPais.Text,
                 };
                 return productoImportado;

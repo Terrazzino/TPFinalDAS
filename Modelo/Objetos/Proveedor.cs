@@ -1,4 +1,4 @@
-﻿using Modelo.Clases_Abstractas;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Modelo.Objetos
 {
-    public class Proveedor:IdentificacionProveedorCliente
+    public class Proveedor
     {
         public int Id { get; set; }
         public string Contacto { get; set; }
+        public string Codigo { get; set; }
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
         public List<Producto> Productos { get; set; } = new List<Producto>();
 
         public void AgregarProductoAlProveedor(Producto producto)
@@ -30,16 +33,7 @@ namespace Modelo.Objetos
             }
         }
 
-        public void ModificarProductoDelProveedor(Producto productoActualizado)
-        {
-            var buscarProductoAnterior = Productos.FirstOrDefault(x=>x.Nombre == productoActualizado.Nombre);
-            if (buscarProductoAnterior != null)
-            {
-                productoActualizado.Id = buscarProductoAnterior.Id;
-                Productos.Remove(buscarProductoAnterior);
-                Productos.Add(productoActualizado);
-            }
-        }
+      
 
         public override string ToString()
         {

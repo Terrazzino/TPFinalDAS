@@ -34,7 +34,7 @@ namespace Vista
             {
                 Categoria = c.Nombre,
                 Codigo = c.Codigo,
-                Productos = string.Join(" - ", c.Productos.Select(n => n.Nombre))
+            ///    Productos = string.Join(" - ", c.Productos.Select(n => n.Nombre))
             }).ToList();
 
             dgvCategorias.DataSource = null;
@@ -90,9 +90,11 @@ namespace Vista
         {
             if (categoriaSeleccionada != null)
             {
-                var categoriaActualizada = ValidarCamposYCrear();
-                categoriaActualizada.Codigo = categoriaSeleccionada.Codigo;
-                controladora.ModificarCategoria(categoriaActualizada);
+                //    var categoriaActualizada = ValidarCamposYCrear();
+                //categoriaSeleccionada.Codigo = txt odigo;
+                categoriaSeleccionada.Nombre = txtNombreCategoria.Text;
+                categoriaSeleccionada.Descripcion = txtDescripcionCategoria.Text;
+                controladora.ModificarCategoria(categoriaSeleccionada);
                 ActualizarGrillaCategorias();
                 lblLeyenda.Text = $"La categoria {categoriaSeleccionada.Nombre} se a modificado";
             }

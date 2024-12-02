@@ -16,7 +16,7 @@ namespace Controladora
 
         public ReadOnlyCollection<Categoria> LeerCategorias()
         {
-            return _contexto.Categorias.Include(p => p.Productos).ToList().AsReadOnly();
+            return _contexto.Categorias.ToList().AsReadOnly();
         }
         public void RegistrarCategoria(Categoria categoria)
         {
@@ -37,9 +37,8 @@ namespace Controladora
             var categoriaAnterior = _contexto.Categorias.FirstOrDefault(x=>x.Codigo==categoriaActualizada.Codigo);
             if (categoriaAnterior != null)
             {
-                categoriaActualizada.Id = categoriaAnterior.Id;
-                _contexto.Categorias.Remove(categoriaAnterior);
-                _contexto.Categorias.Add(categoriaActualizada);
+  
+                _contexto.Categorias.Update(categoriaActualizada);
                 _contexto.SaveChanges();
             }
         }

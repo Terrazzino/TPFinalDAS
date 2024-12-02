@@ -15,7 +15,7 @@ namespace Controladora
         Contexto _contexto = new Contexto();
         public ReadOnlyCollection<Factura> LeerFacturas()
         {
-            return _contexto.Facturas.Include(c => c.ClienteDeFactura).Include(d=>d.DetallesDeFactura).ToList().AsReadOnly();
+            return _contexto.Facturas.Include(c => c.ClienteDeFactura).Include(d=>d.DetallesDeFactura).ThenInclude(x=>x.Producto).ToList().AsReadOnly();
         }
         public ReadOnlyCollection<Cliente> LeerClientes()
         {
@@ -25,22 +25,22 @@ namespace Controladora
         {
             return _contexto.Productos.Include(c=>c.CategoriaDelProducto).ToList().AsReadOnly();
         }
-        public ReadOnlyCollection<DetalleFactura> LeerDetalles()
-        {
-            return _contexto.DetallesFacturas.Include(p=>p.ProductoDelDetalle).ToList().AsReadOnly();
-        }
-        public ReadOnlyCollection<DetalleFactura> LeerDetallesDeFactura(Factura factura)
-        {
-            List<DetalleFactura> detallesDeFactura = new List<DetalleFactura>();
-            foreach (DetalleFactura d in _contexto.DetallesFacturas)
-            {
-                if (d.FacturaDelDetalle.Numero == factura.Numero)
-                {
-                    detallesDeFactura.Add(d);
-                }
-            }
-            return detallesDeFactura.ToList().AsReadOnly();
-        }
+        //public ReadOnlyCollection<DetalleFactura> LeerDetalles()
+        //{
+        //    return _contexto.DetallesFacturas.Include(p=>p.ProductoDelDetalle).ToList().AsReadOnly();
+        //}
+        //public ReadOnlyCollection<DetalleFactura> LeerDetallesDeFactura(Factura factura)
+        //{
+        //    List<DetalleFactura> detallesDeFactura = new List<DetalleFactura>();
+        //    foreach (DetalleFactura d in _contexto.DetallesFacturas)
+        //    {
+        //        if (d.FacturaDelDetalle.Numero == factura.Numero)
+        //        {
+        //            detallesDeFactura.Add(d);
+        //        }
+        //    }
+        //    return detallesDeFactura.ToList().AsReadOnly();
+        //}
 
         public void RegistrarFactura(Factura factura)
         {
@@ -51,31 +51,31 @@ namespace Controladora
                 _contexto.SaveChanges();
             }
         }
-        public void RegistrarDetalle(Factura factura, DetalleFactura detalle)
-        {
-            var buscarProductoDelDetalle = _contexto.Productos.FirstOrDefault(x=>x.Codigo == detalle.ProductoDelDetalle.Codigo);
-            var validarExistenciaDeFactura = _contexto.Facturas.Include(d => d.DetallesDeFactura).FirstOrDefault(x => x.Numero == factura.Numero);
-            if (validarExistenciaDeFactura != null)
-            {
-                var validarDetalleDuplicado = validarExistenciaDeFactura.DetallesDeFactura.FirstOrDefault(x=>x.ProductoDelDetalle.Nombre==detalle.ProductoDelDetalle.Nombre);
-                if (validarDetalleDuplicado == null)
-                {
-                    validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
-                    _contexto.DetallesFacturas.Add(detalle);
-                    _contexto.Facturas.Update(factura);
-                }
-                else
-                {
-                    detalle.Id = validarDetalleDuplicado.Id;
-                    validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
-                    _contexto.DetallesFacturas.Update(validarDetalleDuplicado);
-                    _contexto.Facturas.Update(factura);
-                }
-                buscarProductoDelDetalle.AjustarStock(detalle.Cantidad);
-                _contexto.Productos.Update(buscarProductoDelDetalle);
-                _contexto.SaveChanges();
-            }   
-        }
+        //public void RegistrarDetalle(Factura factura, DetalleFactura detalle)
+        //{
+        //    var buscarProductoDelDetalle = _contexto.Productos.FirstOrDefault(x=>x.Codigo == detalle.ProductoDelDetalle.Codigo);
+        //    var validarExistenciaDeFactura = _contexto.Facturas.Include(d => d.DetallesDeFactura).FirstOrDefault(x => x.Numero == factura.Numero);
+        //    if (validarExistenciaDeFactura != null)
+        //    {
+        //        var validarDetalleDuplicado = validarExistenciaDeFactura.DetallesDeFactura.FirstOrDefault(x=>x.ProductoDelDetalle.Nombre==detalle.ProductoDelDetalle.Nombre);
+        //        if (validarDetalleDuplicado == null)
+        //        {
+        //            validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
+        //            _contexto.DetallesFacturas.Add(detalle);
+        //            _contexto.Facturas.Update(factura);
+        //        }
+        //        else
+        //        {
+        //            detalle.Id = validarDetalleDuplicado.Id;
+        //            validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
+        //            _contexto.DetallesFacturas.Update(validarDetalleDuplicado);
+        //            _contexto.Facturas.Update(factura);
+        //        }
+        //        buscarProductoDelDetalle.AjustarStock(detalle.Cantidad);
+        //        _contexto.Productos.Update(buscarProductoDelDetalle);
+        //        _contexto.SaveChanges();
+        //    }   
+        //}
 
         public void EliminarFactura(Factura factura)
         {
@@ -91,30 +91,30 @@ namespace Controladora
 
         public void EliminarDetalleDeFactura(DetalleFactura detalle)
         {
-            var validarExistenciaDeDetalle = _contexto.DetallesFacturas.FirstOrDefault(x => x.ProductoDelDetalle == detalle.ProductoDelDetalle);
-            if (validarExistenciaDeDetalle!=null)
-            {
-                validarExistenciaDeDetalle.FacturaDelDetalle.EliminarDetalle(validarExistenciaDeDetalle);
-                _contexto.DetallesFacturas.Remove(validarExistenciaDeDetalle);
-                _contexto.Facturas.Update(validarExistenciaDeDetalle.FacturaDelDetalle);
-                _contexto.SaveChanges();
-            }
+            //var validarExistenciaDeDetalle = _contexto.DetallesFacturas.FirstOrDefault(x => x.ProductoDelDetalle == detalle.ProductoDelDetalle);
+            //if (validarExistenciaDeDetalle!=null)
+            //{
+            //    validarExistenciaDeDetalle.FacturaDelDetalle.EliminarDetalle(validarExistenciaDeDetalle);
+            //    _contexto.DetallesFacturas.Remove(validarExistenciaDeDetalle);
+            //    _contexto.Facturas.Update(validarExistenciaDeDetalle.FacturaDelDetalle);
+            //    _contexto.SaveChanges();
+            //}
         }
 
         public void ModificarFactura(Factura facturaActualizada)
         {
-            var facturaAnterior = _contexto.Facturas.Include(d=>d.DetallesDeFactura).FirstOrDefault(x=>x.Numero == facturaActualizada.Numero);
-            if (facturaActualizada!=null)
-            {
-                facturaActualizada.Id = facturaAnterior.Id;
-                foreach (DetalleFactura d in facturaAnterior.DetallesDeFactura)
-                {
-                    facturaActualizada.AgregarDetalleDeLaFactura(d);
-                }
-                _contexto.Facturas.Remove(facturaAnterior);
-                _contexto.Facturas.Add(facturaActualizada);
+        //    var facturaAnterior = _contexto.Facturas.Include(d=>d.DetallesDeFactura).FirstOrDefault(x=>x.Numero == facturaActualizada.Numero);
+        //    if (facturaActualizada!=null)
+        //    {
+        //        facturaActualizada.Id = facturaAnterior.Id;
+        //        foreach (DetalleFactura d in facturaAnterior.DetallesDeFactura)
+        //        {
+        //            facturaActualizada.AgregarDetalleDeLaFactura(d);
+        //        }
+                _contexto.Facturas.Update(facturaActualizada);
+        //        _contexto.Facturas.Add(facturaActualizada);
                 _contexto.SaveChanges();
-            }
+            //}
         }
     }
 }

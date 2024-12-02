@@ -37,9 +37,8 @@ namespace Controladora
             var validarDuplicado = _contexto.Productos.FirstOrDefault(x=>x.Codigo == producto.Codigo);
             if (validarDuplicado == null)
             {
-                producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
+        //        producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
                 _contexto.Categorias.Update(producto.CategoriaDelProducto);
-                _contexto.Productos.Add(producto);
                 _contexto.SaveChanges();
             }
         }
@@ -49,7 +48,7 @@ namespace Controladora
             var validarDuplicado = _contexto.Productos.FirstOrDefault(x => x.Codigo == producto.Codigo);
             if (validarDuplicado == null)
             {
-                producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
+          //      producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
                 _contexto.Categorias.Update(producto.CategoriaDelProducto);
                 _contexto.ProductosImportados.Add(producto);
                 _contexto.SaveChanges();
@@ -58,15 +57,15 @@ namespace Controladora
 
         public void EliminarProducto(Producto producto)
         {
-            producto.CategoriaDelProducto.EliminarProductoDeCategoria(producto);
-            _contexto.Categorias.Update(producto.CategoriaDelProducto);
+            //producto.CategoriaDelProducto.EliminarProductoDeCategoria(producto);
+            //_contexto.Categorias.Update(producto.CategoriaDelProducto);
             _contexto.Productos.Remove(producto);
             _contexto.SaveChanges();
         }
         public void EliminarProducto(ProductoImportado producto)
         {
-            producto.CategoriaDelProducto.EliminarProductoDeCategoria(producto);
-            _contexto.Categorias.Update(producto.CategoriaDelProducto);
+     //       producto.CategoriaDelProducto.EliminarProductoDeCategoria(producto);
+     //       _contexto.Categorias.Update(producto.CategoriaDelProducto);
             _contexto.ProductosImportados.Remove(producto);
             _contexto.SaveChanges();
         }
@@ -76,11 +75,11 @@ namespace Controladora
             var productoAnterior = _contexto.Productos.FirstOrDefault(x=>x.Codigo==productoActualizado.Codigo);
             if (productoAnterior != null)
             {
-                productoActualizado.Id = productoAnterior.Id;
-                productoActualizado.CategoriaDelProducto.ModificarProductoDeCliente(productoActualizado);
-                _contexto.Categorias.Update(productoActualizado.CategoriaDelProducto);
-                _contexto.Productos.Remove(productoAnterior);
-                _contexto.Productos.Add(productoActualizado);
+                //productoActualizado.Id = productoAnterior.Id;
+                //productoActualizado.CategoriaDelProducto.ModificarProductoDeCliente(productoActualizado);
+                //_contexto.Categorias.Update(productoActualizado.CategoriaDelProducto);
+                //_contexto.Productos.Remove(productoAnterior);
+                _contexto.Productos.Update(productoActualizado);
                 _contexto.SaveChanges();
             }
         }
@@ -89,19 +88,16 @@ namespace Controladora
             var productoImportadoAnterior = _contexto.ProductosImportados.FirstOrDefault(x => x.Codigo == productoImportadoActualizado.Codigo);
             if (productoImportadoAnterior != null)
             {
-                productoImportadoActualizado.Id = productoImportadoAnterior.Id;
-                productoImportadoActualizado.CategoriaDelProducto.ModificarProductoDeCliente(productoImportadoActualizado);
-                _contexto.Categorias.Update(productoImportadoActualizado.CategoriaDelProducto);
-                _contexto.ProductosImportados.Remove(productoImportadoAnterior);
-                _contexto.ProductosImportados.Add(productoImportadoActualizado);
+                //productoImportadoActualizado.Id = productoImportadoAnterior.Id;
+                //productoImportadoActualizado.CategoriaDelProducto.ModificarProductoDeCliente(productoImportadoActualizado);
+                //_contexto.Categorias.Update(productoImportadoActualizado.CategoriaDelProducto);
+                //_contexto.ProductosImportados.Remove(productoImportadoAnterior);
+                _contexto.ProductosImportados.Update(productoImportadoActualizado);
                 _contexto.SaveChanges();
             }
         }
 
-        public Categoria BuscarCategoriaDelProducto(string nombre)
-        {
-            return _contexto.Categorias.Include(p=>p.Productos).FirstOrDefault(x => x.Nombre == nombre);
-        }
+        
 
         public ReadOnlyCollection<Categoria> LeerTodaLasCategorias()
         {
