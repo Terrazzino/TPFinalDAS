@@ -42,6 +42,11 @@ namespace Modelo.Objetos
             }
             CalcularTotalDeFactura();
         }
+        public void EliminarTodosLosDetalles()
+        {
+            DetallesDeFactura.Clear();
+            CalcularTotalDeFactura();
+        }
 
         public void CalcularTotalDeFactura()
         {

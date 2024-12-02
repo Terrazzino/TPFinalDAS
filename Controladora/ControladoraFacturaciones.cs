@@ -82,11 +82,8 @@ namespace Controladora
             var validarExistenciaDeFactura = _contexto.Facturas.Include(d => d.DetallesDeFactura).FirstOrDefault(x => x.Numero == factura.Numero);
             if (validarExistenciaDeFactura!=null)
             {
-                foreach (DetalleFactura d in validarExistenciaDeFactura.DetallesDeFactura)
-                {
-                    validarExistenciaDeFactura.EliminarDetalle(d);
-                    _contexto.DetallesFacturas.Remove(d);
-                }
+                factura.EliminarTodosLosDetalles();
+                _contexto.Facturas.Update(factura);
                 _contexto.Facturas.Remove(factura);
                 _contexto.SaveChanges();
             }
