@@ -20,7 +20,7 @@ namespace Controladora
         }
         public ReadOnlyCollection<DetalleFactura> LeerProductosMasVendidos()
         {
-            return _context.DetallesFacturas.Include(p => p.ProductoDelDetalle).OrderBy(c => c.Cantidad).ToList().AsReadOnly();
+            return _context.DetallesFacturas.Include(p => p.ProductoDelDetalle).OrderByDescending(c => c.Cantidad).ToList().AsReadOnly();
         }
     }
 }

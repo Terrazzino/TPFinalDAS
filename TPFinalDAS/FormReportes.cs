@@ -48,8 +48,15 @@ namespace Vista
             {
                 productos.Add(de.ProductoDelDetalle);
             }
+            var datosProductos = controladora.LeerProductosMasVendidos().Select(p => new
+            {
+                Nombre = p.ProductoDelDetalle.Nombre,
+                Stock = p.ProductoDelDetalle.Stock,
+                Cantidad = p.Cantidad,
+                Total = p.Subtotal,
+            }).ToList();
             dgvProductosMasVendidos.DataSource = null;
-            dgvProductosMasVendidos.DataSource = productos;
+            dgvProductosMasVendidos.DataSource = datosProductos;
         }
     }
 }
