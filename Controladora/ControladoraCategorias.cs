@@ -34,13 +34,8 @@ namespace Controladora
         }
         public void ModificarCategoria(Categoria categoriaActualizada)
         {
-            var categoriaAnterior = _contexto.Categorias.FirstOrDefault(x=>x.Codigo==categoriaActualizada.Codigo);
-            if (categoriaAnterior != null)
-            {
-  
-                _contexto.Categorias.Update(categoriaActualizada);
-                _contexto.SaveChanges();
-            }
+            _contexto.Categorias.Update(categoriaActualizada);
+            _contexto.SaveChanges();
         }
     }
 }

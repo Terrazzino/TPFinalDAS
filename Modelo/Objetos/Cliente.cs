@@ -34,5 +34,10 @@ namespace Modelo.Objetos
             }
         }
 
+        public override string ToString()
+        {
+            return Codigo;
+        }
+
     }
 }

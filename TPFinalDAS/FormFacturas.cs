@@ -38,7 +38,7 @@ namespace Vista
                 Numero = f.Numero,
                 Fecha = f.Fecha,
                 Cliente = f.Cliente.Nombre,
-               // Total = f.CalcularTotal().ToString(),
+                Total = f.Total,
             }).ToList();
 
             dgvFactura.DataSource = null;
@@ -61,7 +61,6 @@ namespace Vista
                     Cantidad = d.Cantidad,
                     PrecioUnitario = d.PrecioUnitario,
                     SubTotal = d.Subtotal,
-                    //NroFactura = d.Factura.Numero,
                 }).ToList();
 
                 dgvDetalles.DataSource = null;
@@ -83,7 +82,6 @@ namespace Vista
                 Cantidad = d.Cantidad,
                 PrecioUnitario = d.PrecioUnitario,
                 SubTotal = d.Subtotal,
-            //    NroFactura = d.FacturaDelDetalle.Numero,
             }).ToList();
 
             dgvDetalles.DataSource = null;
@@ -92,8 +90,7 @@ namespace Vista
         }
         private void dgvDetalles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-       //     detalleSeleccionado = controladora.LeerDetalles().FirstOrDefault(x => x.ProductoDelDetalle.Nombre == dgvDetalles.Rows[e.RowIndex].Cells[0].Value.ToString());
-
+            detalleSeleccionado = facturaSeleccionada.DetallesDeFactura.FirstOrDefault(x => x.Producto.Nombre == dgvDetalles.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
 
 
@@ -164,8 +161,11 @@ namespace Vista
             if (facturaSeleccionada != null)
             {
                 var facturaActualizada = ValidarYCrearCamposFactura();
-                facturaActualizada.Numero = facturaSeleccionada.Numero;
-                controladora.ModificarFactura(facturaActualizada);
+
+                facturaSeleccionada.Fecha = facturaActualizada.Fecha;
+                facturaSeleccionada.Cliente = facturaActualizada.Cliente;
+
+                controladora.ModificarFactura(facturaSeleccionada);
                 ActualizarGrillaFacturasYCmbs();
                 lblLeyenda.Text = $"La factura {facturaSeleccionada.Numero} a sido actualizada";
             }
@@ -181,6 +181,7 @@ namespace Vista
             {
                 controladora.EliminarFactura(facturaSeleccionada);
                 ActualizarGrillaFacturasYCmbs();
+                ActualizaGrillaDetalles();
                 lblLeyenda.Text = $"La factura {facturaSeleccionada.Numero} a sido eliminada";
             }
             else
@@ -196,11 +197,10 @@ namespace Vista
                 var detalle = ValidarYCrearCamposDetalle();
                 if (detalle != null)
                 {
-             //       detalle.FacturaDelDetalle = facturaSeleccionada;
-              //      controladora.RegistrarDetalle(facturaSeleccionada, detalle);
+                    controladora.RegistrarDetalle(facturaSeleccionada, detalle);
                     ActualizarGrillaFacturasYCmbs();
                     ActualizaGrillaDetalles();
-             //       lblLeyenda.Text = $"El detalle de {detalle.ProductoDelDetalle.Nombre} a sido registrado";
+                    lblLeyenda.Text = $"El detalle de {detalle.Producto.Nombre} a sido registrado";
                 }
                 else
                 {
@@ -217,7 +217,7 @@ namespace Vista
         {
             if (detalleSeleccionado!=null)
             {
-                controladora.EliminarDetalleDeFactura(detalleSeleccionado);
+                controladora.EliminarDetalleDeFactura(facturaSeleccionada,detalleSeleccionado);
                 ActualizarGrillaFacturasYCmbs();
                 ActualizaGrillaDetalles();
                 lblDetalles.Text = $"El detalle a sido eliminado";

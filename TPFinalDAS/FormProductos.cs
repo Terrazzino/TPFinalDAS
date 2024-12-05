@@ -106,7 +106,7 @@ namespace Vista
                     Descripcion = txtDescripcionProducto.Text,
                     Precio = decimal.Parse(txtPrecioProducto.Text),
                     Stock = int.Parse(txtStockProducto.Text),
-      //              CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text)
+                    Categoria = controladora.LeerTodaLasCategorias().FirstOrDefault(x => x.Nombre == cmbCategorias.Text),
                 };
                 return producto;
             }
@@ -127,7 +127,7 @@ namespace Vista
                     Descripcion = txtDescripcionProducto.Text,
                     Precio = decimal.Parse(txtPrecioProducto.Text),
                     Stock = int.Parse(txtStockProducto.Text),
-   //                 CategoriaDelProducto = controladora.BuscarCategoriaDelProducto(cmbCategorias.Text),
+                    Categoria = controladora.LeerTodaLasCategorias().FirstOrDefault(x => x.Nombre == cmbCategorias.Text),
                     Pais = txtPais.Text,
                 };
                 return productoImportado;
@@ -185,8 +185,14 @@ namespace Vista
                 if (productoSeleccionado != null)
                 {
                     var producto = ValidarYCrearProducto();
-                    producto.Codigo = productoSeleccionado.Codigo;
-                    controladora.ModificarProducto(producto);
+
+                    productoSeleccionado.Nombre = producto.Nombre;
+                    productoSeleccionado.Descripcion = producto.Descripcion;
+                    productoSeleccionado.Precio = producto.Precio;
+                    productoSeleccionado.Stock = producto.Stock;
+                    productoSeleccionado.Categoria = producto.Categoria;
+
+                    controladora.ModificarProducto(productoSeleccionado);
                     ActualizarGrillas();
                     lblLeyenda.Text = $"El producto {productoSeleccionado.Nombre} a sido actualizado";
                 }
@@ -200,9 +206,15 @@ namespace Vista
                 if (productoImportadoSeleccionado != null)
                 {
                     var productoImportado = ValidarYCrearProductoImportado();
-                    productoImportado.Codigo = productoImportadoSeleccionado.Codigo;
-                    productoImportado.Id = productoImportadoSeleccionado.Id;
-                    controladora.ModificarProducto(productoImportado);
+
+                    productoImportadoSeleccionado.Nombre = productoImportado.Nombre;
+                    productoImportadoSeleccionado.Descripcion = productoImportado.Descripcion;
+                    productoImportadoSeleccionado.Precio = productoImportado.Precio;
+                    productoImportadoSeleccionado.Stock = productoImportado.Stock;
+                    productoImportadoSeleccionado.Categoria = productoImportado.Categoria;
+                    productoImportadoSeleccionado.Pais = productoImportado.Pais;
+
+                    controladora.ModificarProducto(productoImportadoSeleccionado);
                     ActualizarGrillas();
                     lblLeyenda.Text = $"El producto importado {productoImportadoSeleccionado.Nombre} a sido actualizado";
                 }

@@ -28,7 +28,7 @@ namespace Modelo.Objetos
                 validarDuplicado.Cantidad += detalle.Cantidad;
                 validarDuplicado.CalcularSubtotal();
             }
-            Total+= detalle.Subtotal;
+            CalcularTotalDeFactura();
         }
 
         public void EliminarDetalle(DetalleFactura detalle)
@@ -40,17 +40,20 @@ namespace Modelo.Objetos
                 validarExistencia.CalcularSubtotal();
                 DetallesDeFactura.Remove(detalle);
             }
-            Total -= detalle.Subtotal;
+            CalcularTotalDeFactura();
         }
        
-        
-        public void EliminarTodosLosDetalles()
+
+        public void CalcularTotalDeFactura()
         {
-            DetallesDeFactura.Clear();
             Total = 0;
+            foreach (DetalleFactura d in DetallesDeFactura)
+            {
+                Total += d.Subtotal;
+            }
         }
 
-    
+
 
         public override string ToString()
         {

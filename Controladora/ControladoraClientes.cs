@@ -34,14 +34,8 @@ namespace Controladora
 
         public void ModificarCliente(Cliente clienteActualizado)
         {
-            var clienteAnterior = _contexto.Clientes.FirstOrDefault(x => x.Codigo == clienteActualizado.Codigo);
-            if (clienteAnterior != null)
-            {
-                clienteActualizado.Id = clienteAnterior.Id;
-                _contexto.Clientes.Remove(clienteAnterior);
-                _contexto.Clientes.Add(clienteActualizado);
-                _contexto.SaveChanges();
-            }
+            _contexto.Clientes.Update(clienteActualizado);
+            _contexto.SaveChanges();
         }
     }
 }

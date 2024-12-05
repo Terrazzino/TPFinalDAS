@@ -99,8 +99,13 @@ namespace Vista
             if (clienteSeleccionado != null)
             {
                 var clienteActualizado = ValidarCamposYCrear();
-                clienteActualizado.Codigo = clienteSeleccionado.Codigo;
-                controladora.ModificarCliente(clienteActualizado);
+
+                clienteSeleccionado.Nombre = clienteActualizado.Nombre;
+                clienteSeleccionado.Direccion = clienteActualizado.Direccion;
+                clienteSeleccionado.Contacto = clienteActualizado.Contacto;
+
+
+                controladora.ModificarCliente(clienteSeleccionado);
                 ActualizarGrilla();
                 lblLeyenda.Text = $"El cliente {clienteSeleccionado.Nombre} se a modificado";
             }

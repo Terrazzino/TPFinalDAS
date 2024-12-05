@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Modelo.Migrations
 {
     /// <inheritdoc />
-    public partial class CorrecionIDAutoincremental01 : Migration
+    public partial class TpFinal001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,12 +64,12 @@ namespace Modelo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,14 +91,14 @@ namespace Modelo.Migrations
                     Numero = table.Column<int>(type: "int", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ClienteDeFacturaId = table.Column<int>(type: "int", nullable: false)
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Facturas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Facturas_Clientes_ClienteDeFacturaId",
-                        column: x => x.ClienteDeFacturaId,
+                        name: "FK_Facturas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -147,48 +147,46 @@ namespace Modelo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DetallesFacturas",
+                name: "DetalleFactura",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
                     PrecioUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Subtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    FacturaDelDetalleId = table.Column<int>(type: "int", nullable: false),
-                    ProductoDelDetalleId = table.Column<int>(type: "int", nullable: false)
+                    ProductoId = table.Column<int>(type: "int", nullable: false),
+                    FacturaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DetallesFacturas", x => x.Id);
+                    table.PrimaryKey("PK_DetalleFactura", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DetallesFacturas_Facturas_FacturaDelDetalleId",
-                        column: x => x.FacturaDelDetalleId,
+                        name: "FK_DetalleFactura_Facturas_FacturaId",
+                        column: x => x.FacturaId,
                         principalTable: "Facturas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_DetallesFacturas_Productos_ProductoDelDetalleId",
-                        column: x => x.ProductoDelDetalleId,
+                        name: "FK_DetalleFactura_Productos_ProductoId",
+                        column: x => x.ProductoId,
                         principalTable: "Productos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetallesFacturas_FacturaDelDetalleId",
-                table: "DetallesFacturas",
-                column: "FacturaDelDetalleId");
+                name: "IX_DetalleFactura_FacturaId",
+                table: "DetalleFactura",
+                column: "FacturaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetallesFacturas_ProductoDelDetalleId",
-                table: "DetallesFacturas",
-                column: "ProductoDelDetalleId");
+                name: "IX_DetalleFactura_ProductoId",
+                table: "DetalleFactura",
+                column: "ProductoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Facturas_ClienteDeFacturaId",
+                name: "IX_Facturas_ClienteId",
                 table: "Facturas",
-                column: "ClienteDeFacturaId");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductoProveedor_ProveedorId",
@@ -205,7 +203,7 @@ namespace Modelo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DetallesFacturas");
+                name: "DetalleFactura");
 
             migrationBuilder.DropTable(
                 name: "ProductoImportado");

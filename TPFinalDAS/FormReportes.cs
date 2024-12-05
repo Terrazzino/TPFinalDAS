@@ -43,7 +43,7 @@ namespace Vista
 
         private void ActualizarGrillaProductosMasVendidos()
         {
-            List<Producto> productos = new List<Producto>();
+            //List<Producto> productos = new List<Producto>();
             //foreach (DetalleFactura de in controladora.LeerProductosMasVendidos())
             //{
             //    productos.Add(de.ProductoDelDetalle);
@@ -56,7 +56,7 @@ namespace Vista
             //    Total = p.Subtotal,
             //}).ToList();
             dgvProductosMasVendidos.DataSource = null;
-            dgvProductosMasVendidos.DataSource = productos;
+            dgvProductosMasVendidos.DataSource = controladora.LeerProductosMasVendidos();
         }
     }
 }

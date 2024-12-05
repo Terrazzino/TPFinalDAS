@@ -129,8 +129,13 @@ namespace Vista
             if (proveedorSeleccionado != null)
             {
                 var proveedorActualizado = ValidarCamposYCrear();
-                proveedorActualizado.Contacto = proveedorSeleccionado.Codigo;
-                controladora.ModificarProveedor(proveedorActualizado);
+
+                proveedorSeleccionado.Nombre = proveedorActualizado.Nombre;
+                proveedorSeleccionado.Direccion = proveedorActualizado.Direccion;
+                proveedorSeleccionado.Contacto = proveedorActualizado.Contacto;
+                proveedorSeleccionado.Productos = proveedorActualizado.Productos;
+
+                controladora.ModificarProveedor(proveedorSeleccionado);
                 ActualizarGrilla();
                 lblLeyenda.Text = $"El proveedor {proveedorSeleccionado.Nombre} a sido modificado";
             }

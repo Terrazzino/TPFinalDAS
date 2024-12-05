@@ -36,70 +36,30 @@ namespace Controladora
                 _contexto.SaveChanges();
             }
         }
-        //public void RegistrarDetalle(Factura factura, DetalleFactura detalle)
-        //{
-        //    var buscarProductoDelDetalle = _contexto.Productos.FirstOrDefault(x=>x.Codigo == detalle.ProductoDelDetalle.Codigo);
-        //    var validarExistenciaDeFactura = _contexto.Facturas.Include(d => d.DetallesDeFactura).FirstOrDefault(x => x.Numero == factura.Numero);
-        //    if (validarExistenciaDeFactura != null)
-        //    {
-        //        var validarDetalleDuplicado = validarExistenciaDeFactura.DetallesDeFactura.FirstOrDefault(x=>x.ProductoDelDetalle.Nombre==detalle.ProductoDelDetalle.Nombre);
-        //        if (validarDetalleDuplicado == null)
-        //        {
-        //            validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
-        //            _contexto.DetallesFacturas.Add(detalle);
-        //            _contexto.Facturas.Update(factura);
-        //        }
-        //        else
-        //        {
-        //            detalle.Id = validarDetalleDuplicado.Id;
-        //            validarExistenciaDeFactura.AgregarDetalleDeLaFactura(detalle);
-        //            _contexto.DetallesFacturas.Update(validarDetalleDuplicado);
-        //            _contexto.Facturas.Update(factura);
-        //        }
-        //        buscarProductoDelDetalle.AjustarStock(detalle.Cantidad);
-        //        _contexto.Productos.Update(buscarProductoDelDetalle);
-        //        _contexto.SaveChanges();
-        //    }   
-        //}
+        public void RegistrarDetalle(Factura factura, DetalleFactura detalle)
+        {
+            factura.AgregarDetalleDeLaFactura(detalle);
+            _contexto.Facturas.Update(factura);
+            _contexto.SaveChanges();           
+        }
 
         public void EliminarFactura(Factura factura)
         {
-            var validarExistenciaDeFactura = _contexto.Facturas.Include(d => d.DetallesDeFactura).FirstOrDefault(x => x.Numero == factura.Numero);
-            if (validarExistenciaDeFactura!=null)
-            {
-                factura.EliminarTodosLosDetalles();
-                _contexto.Facturas.Update(factura);
-                _contexto.Facturas.Remove(factura);
-                _contexto.SaveChanges();
-            }
+            _contexto.Facturas.Remove(factura);
+            _contexto.SaveChanges();
         }
 
-        public void EliminarDetalleDeFactura(DetalleFactura detalle)
+        public void EliminarDetalleDeFactura(Factura factura, DetalleFactura detalle)
         {
-            //var validarExistenciaDeDetalle = _contexto.DetallesFacturas.FirstOrDefault(x => x.ProductoDelDetalle == detalle.ProductoDelDetalle);
-            //if (validarExistenciaDeDetalle!=null)
-            //{
-            //    validarExistenciaDeDetalle.FacturaDelDetalle.EliminarDetalle(validarExistenciaDeDetalle);
-            //    _contexto.DetallesFacturas.Remove(validarExistenciaDeDetalle);
-            //    _contexto.Facturas.Update(validarExistenciaDeDetalle.FacturaDelDetalle);
-            //    _contexto.SaveChanges();
-            //}
+            factura.EliminarDetalle(detalle);
+            _contexto.Facturas.Update(factura);
+            _contexto.SaveChanges();
         }
 
         public void ModificarFactura(Factura facturaActualizada)
         {
-        //    var facturaAnterior = _contexto.Facturas.Include(d=>d.DetallesDeFactura).FirstOrDefault(x=>x.Numero == facturaActualizada.Numero);
-        //    if (facturaActualizada!=null)
-        //    {
-        //        facturaActualizada.Id = facturaAnterior.Id;
-        //        foreach (DetalleFactura d in facturaAnterior.DetallesDeFactura)
-        //        {
-        //            facturaActualizada.AgregarDetalleDeLaFactura(d);
-        //        }
-                _contexto.Facturas.Update(facturaActualizada);
-        //        _contexto.Facturas.Add(facturaActualizada);
-                _contexto.SaveChanges();
-            //}
+            _contexto.Facturas.Update(facturaActualizada);
+            _contexto.SaveChanges();
         }
     }
 }

@@ -90,10 +90,10 @@ namespace Vista
         {
             if (categoriaSeleccionada != null)
             {
-                //    var categoriaActualizada = ValidarCamposYCrear();
-                //categoriaSeleccionada.Codigo = txt odigo;
-                categoriaSeleccionada.Nombre = txtNombreCategoria.Text;
-                categoriaSeleccionada.Descripcion = txtDescripcionCategoria.Text;
+                var categoriaActualizada = ValidarCamposYCrear();
+
+                categoriaSeleccionada.Nombre = categoriaActualizada.Nombre;
+                categoriaSeleccionada.Descripcion = categoriaActualizada.Descripcion;
                 controladora.ModificarCategoria(categoriaSeleccionada);
                 ActualizarGrillaCategorias();
                 lblLeyenda.Text = $"La categoria {categoriaSeleccionada.Nombre} se a modificado";

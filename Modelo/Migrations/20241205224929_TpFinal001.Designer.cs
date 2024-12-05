@@ -12,8 +12,8 @@ using Modelo;
 namespace Modelo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20241201190701_AgregamosRelacionCategoriaProducto04")]
-    partial class AgregamosRelacionCategoriaProducto04
+    [Migration("20241205224929_TpFinal001")]
+    partial class TpFinal001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,25 +90,22 @@ namespace Modelo.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<int>("FacturaDelDetalleId")
+                    b.Property<int?>("FacturaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecioUnitario")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductoDelDetalleId")
+                    b.Property<int>("ProductoId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacturaDelDetalleId");
+                    b.HasIndex("FacturaId");
 
-                    b.HasIndex("ProductoDelDetalleId");
+                    b.HasIndex("ProductoId");
 
-                    b.ToTable("DetallesFacturas");
+                    b.ToTable("DetalleFactura");
                 });
 
             modelBuilder.Entity("Modelo.Objetos.Factura", b =>
@@ -119,7 +116,7 @@ namespace Modelo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClienteDeFacturaId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
@@ -133,7 +130,7 @@ namespace Modelo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteDeFacturaId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Facturas");
                 });
@@ -233,43 +230,39 @@ namespace Modelo.Migrations
 
             modelBuilder.Entity("Modelo.Objetos.DetalleFactura", b =>
                 {
-                    b.HasOne("Modelo.Objetos.Factura", "FacturaDelDetalle")
+                    b.HasOne("Modelo.Objetos.Factura", null)
                         .WithMany("DetallesDeFactura")
-                        .HasForeignKey("FacturaDelDetalleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FacturaId");
 
-                    b.HasOne("Modelo.Objetos.Producto", "ProductoDelDetalle")
+                    b.HasOne("Modelo.Objetos.Producto", "Producto")
                         .WithMany()
-                        .HasForeignKey("ProductoDelDetalleId")
+                        .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FacturaDelDetalle");
-
-                    b.Navigation("ProductoDelDetalle");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Modelo.Objetos.Factura", b =>
                 {
-                    b.HasOne("Modelo.Objetos.Cliente", "ClienteDeFactura")
+                    b.HasOne("Modelo.Objetos.Cliente", "Cliente")
                         .WithMany("FacturasDeCliente")
-                        .HasForeignKey("ClienteDeFacturaId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClienteDeFactura");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Modelo.Objetos.Producto", b =>
                 {
-                    b.HasOne("Modelo.Objetos.Categoria", "CategoriaDelProducto")
-                        .WithMany("Productos")
+                    b.HasOne("Modelo.Objetos.Categoria", "Categoria")
+                        .WithMany()
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoriaDelProducto");
+                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("ProductoProveedor", b =>
@@ -294,11 +287,6 @@ namespace Modelo.Migrations
                         .HasForeignKey("Modelo.Objetos.ProductoImportado", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Modelo.Objetos.Categoria", b =>
-                {
-                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("Modelo.Objetos.Cliente", b =>

@@ -42,14 +42,8 @@ namespace Controladora
 
         public void ModificarProveedor(Proveedor proveedorActualizado)
         {
-            var proveedorAnterior = _contexto.Proveedores.FirstOrDefault(x => x.Codigo == proveedorActualizado.Codigo);
-            if (proveedorAnterior != null)
-            {
-                proveedorActualizado.Id = proveedorAnterior.Id;
-                _contexto.Proveedores.Remove(proveedorAnterior);
-                _contexto.Proveedores.Add(proveedorActualizado);
-                _contexto.SaveChanges();
-            }
+            _contexto.Proveedores.Update(proveedorActualizado);
+            _contexto.SaveChanges();
         }
     }
 }

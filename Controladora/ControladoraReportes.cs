@@ -20,6 +20,20 @@ namespace Controladora
         }
         public ReadOnlyCollection<ProductoReporte> LeerProductosMasVendidos()
         {
+            //var listaFactura = _context.Facturas.Include(x => x.DetallesDeFactura).ThenInclude(p=>p.Producto);
+            //return listaFactura;
+            //var result = listaFactura.GroupBy(l => l.DetallesDeFactura)
+            //                  .Select(cl => new ProductoReporte
+            //                  {
+            //                      Id = cl.,
+            //                      Nombre = cl.Key.Nombre,
+            //                      Codigo = cl.Key.Codigo,
+            //                      Descripcion = cl.Key.Descripcion,
+            //                      CantidadVendida = cl.Sum(c => c.DetalleFactura.Cantidad)
+
+            //                  }).OrderByDescending(p => p.CantidadVendida).ToList().AsReadOnly();
+            //return result;
+
             var lista = _context.Productos.Include(x => x.DetalleFactura).AsNoTracking();
             var result = lista.GroupBy(l => l.DetalleFactura.Producto)
                               .Select(cl => new ProductoReporte
@@ -29,7 +43,7 @@ namespace Controladora
                                   Codigo = cl.Key.Codigo,
                                   Descripcion = cl.Key.Descripcion,
                                   CantidadVendida = cl.Sum(c => c.DetalleFactura.Cantidad)
-                                  
+
                               }).OrderByDescending(p => p.CantidadVendida).ToList().AsReadOnly();
             return result;
         }

@@ -113,7 +113,7 @@ namespace Modelo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClienteDeFacturaId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
@@ -127,7 +127,7 @@ namespace Modelo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteDeFacturaId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Facturas");
                 });
@@ -242,24 +242,24 @@ namespace Modelo.Migrations
 
             modelBuilder.Entity("Modelo.Objetos.Factura", b =>
                 {
-                    b.HasOne("Modelo.Objetos.Cliente", "ClienteDeFactura")
+                    b.HasOne("Modelo.Objetos.Cliente", "Cliente")
                         .WithMany("FacturasDeCliente")
-                        .HasForeignKey("ClienteDeFacturaId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClienteDeFactura");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Modelo.Objetos.Producto", b =>
                 {
-                    b.HasOne("Modelo.Objetos.Categoria", "CategoriaDelProducto")
+                    b.HasOne("Modelo.Objetos.Categoria", "Categoria")
                         .WithMany()
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoriaDelProducto");
+                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("ProductoProveedor", b =>
