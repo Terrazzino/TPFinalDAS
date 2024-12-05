@@ -16,7 +16,7 @@ namespace Modelo
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Factura> Facturas { get; set; }
-      //  public DbSet<DetalleFactura> DetallesFacturas { get; set; }
+    
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,9 +29,8 @@ namespace Modelo
                 .HasBaseType<Producto>();
 
             modelBuilder.Entity<Producto>()
-                .HasOne(p => p.CategoriaDelProducto);
-             //   .WithMany(c => c.Productos)
-              //  .HasForeignKey(p => p.CategoriaId);
+                .HasOne(p => p.Categoria);
+            
             modelBuilder.Entity<Producto>().Ignore(Producto => Producto.DetalleFactura);
 
             modelBuilder.Entity<Proveedor>()
@@ -39,7 +38,7 @@ namespace Modelo
                 .WithMany();
 
             modelBuilder.Entity<Factura>()
-                .HasOne(f => f.ClienteDeFactura)
+                .HasOne(f => f.Cliente)
                 .WithMany(c => c.FacturasDeCliente);
 
             modelBuilder.Entity<Factura>()

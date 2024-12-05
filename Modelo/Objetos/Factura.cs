@@ -12,7 +12,7 @@ namespace Modelo.Objetos
         public int Numero {  get; set; }
         public DateTime Fecha { get; set; }
         public decimal Total {  get; set; }
-        public Cliente ClienteDeFactura { get; set; }
+        public Cliente Cliente { get; set; }
         public List<DetalleFactura> DetallesDeFactura { get; set;} = new List<DetalleFactura>();
   
         public void AgregarDetalleDeLaFactura(DetalleFactura detalle)

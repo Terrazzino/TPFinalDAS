@@ -15,7 +15,7 @@ namespace Controladora
         Contexto _contexto = new Contexto();
         public ReadOnlyCollection<Factura> LeerFacturas()
         {
-            return _contexto.Facturas.Include(c => c.ClienteDeFactura).Include(d=>d.DetallesDeFactura).ThenInclude(x=>x.Producto).ToList().AsReadOnly();
+            return _contexto.Facturas.Include(c => c.Cliente).Include(d=>d.DetallesDeFactura).ThenInclude(x=>x.Producto).ToList().AsReadOnly();
         }
         public ReadOnlyCollection<Cliente> LeerClientes()
         {
@@ -23,28 +23,13 @@ namespace Controladora
         }
         public ReadOnlyCollection<Producto> LeerProductos()
         {
-            return _contexto.Productos.Include(c=>c.CategoriaDelProducto).ToList().AsReadOnly();
+            return _contexto.Productos.Include(c=>c.Categoria).ToList().AsReadOnly();
         }
-        //public ReadOnlyCollection<DetalleFactura> LeerDetalles()
-        //{
-        //    return _contexto.DetallesFacturas.Include(p=>p.ProductoDelDetalle).ToList().AsReadOnly();
-        //}
-        //public ReadOnlyCollection<DetalleFactura> LeerDetallesDeFactura(Factura factura)
-        //{
-        //    List<DetalleFactura> detallesDeFactura = new List<DetalleFactura>();
-        //    foreach (DetalleFactura d in _contexto.DetallesFacturas)
-        //    {
-        //        if (d.FacturaDelDetalle.Numero == factura.Numero)
-        //        {
-        //            detallesDeFactura.Add(d);
-        //        }
-        //    }
-        //    return detallesDeFactura.ToList().AsReadOnly();
-        //}
+       
 
         public void RegistrarFactura(Factura factura)
         {
-            var validarDuplicado = _contexto.Facturas.Include(d=>d.DetallesDeFactura).FirstOrDefault(x=>x.Numero==factura.Numero);
+            var validarDuplicado = _contexto.Facturas.Include(x=>x.Cliente).Include(d=>d.DetallesDeFactura).ThenInclude(d=>d.Producto).FirstOrDefault(x=>x.Numero==factura.Numero);
             if (validarDuplicado == null)
             {
                 _contexto.Facturas.Add(factura);

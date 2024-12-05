@@ -74,7 +74,7 @@ namespace Vista
             txtPrecioProducto.Text = productoSeleccionado.Precio.ToString();
             txtStockProducto.Text = productoSeleccionado.Stock.ToString();
             checkImportado.Checked = false;
-            cmbCategorias.Text = productoSeleccionado.CategoriaDelProducto.Nombre.ToString();
+            cmbCategorias.Text = productoSeleccionado.Categoria.Nombre.ToString();
 
             lblLeyenda.Text = $"A seleccionado el producto {productoSeleccionado.Nombre}";
         }
@@ -90,7 +90,7 @@ namespace Vista
             txtStockProducto.Text = productoImportadoSeleccionado.Stock.ToString();
             checkImportado.Checked = true;
             txtPais.Text = productoImportadoSeleccionado.Pais;
-            cmbCategorias.Text = productoImportadoSeleccionado.CategoriaDelProducto.Nombre.ToString();
+            cmbCategorias.Text = productoImportadoSeleccionado.Categoria.Nombre.ToString();
 
             lblLeyenda.Text = $"A seleccionado el producto {productoImportadoSeleccionado.Nombre}";
         }

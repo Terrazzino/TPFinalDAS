@@ -15,7 +15,7 @@ namespace Modelo.Objetos
         public string Descripcion { get; set; }
         public int Stock {  get; set; }
         public int CategoriaId { get; set; }
-        public Categoria CategoriaDelProducto { get; set; }
+        public Categoria Categoria { get; set; }
 
         public DetalleFactura DetalleFactura { get; set; }
         public void AjustarStock(int cantidad)

@@ -16,7 +16,7 @@ namespace Controladora
 
         public ReadOnlyCollection<Factura> LeerFacturas()
         {
-            return _context.Facturas.Include(c=>c.ClienteDeFactura).Include(d=>d.DetallesDeFactura).OrderBy(f=>f.Fecha).ToList().AsReadOnly();
+            return _context.Facturas.Include(c=>c.Cliente).Include(d=>d.DetallesDeFactura).OrderBy(f=>f.Fecha).ToList().AsReadOnly();
         }
         public ReadOnlyCollection<Producto> LeerProductosMasVendidos()
         {

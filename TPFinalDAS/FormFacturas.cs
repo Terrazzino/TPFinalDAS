@@ -37,7 +37,7 @@ namespace Vista
             {
                 Numero = f.Numero,
                 Fecha = f.Fecha,
-                Cliente = f.ClienteDeFactura.Nombre,
+                Cliente = f.Cliente.Nombre,
                // Total = f.CalcularTotal().ToString(),
             }).ToList();
 
@@ -75,7 +75,7 @@ namespace Vista
 
             txtNumeroFactura.Text = facturaSeleccionada.Numero.ToString();
             dateFactura.Value = DateTime.Parse(facturaSeleccionada.Fecha.ToString());
-            cmbClientes.Text = facturaSeleccionada.ClienteDeFactura.Codigo;
+            cmbClientes.Text = facturaSeleccionada.Cliente.Codigo;
 
             var detalles = facturaSeleccionada.DetallesDeFactura.Select(d => new
             {
@@ -105,7 +105,7 @@ namespace Vista
                 {
                     Numero = int.Parse(txtNumeroFactura.Text),
                     Fecha = dateFactura.Value,
-                    ClienteDeFactura = controladora.LeerClientes().FirstOrDefault(c => c.Codigo == cmbClientes.Text)
+                    Cliente = controladora.LeerClientes().FirstOrDefault(c => c.Codigo == cmbClientes.Text)
                 };
                 return factura;
             }

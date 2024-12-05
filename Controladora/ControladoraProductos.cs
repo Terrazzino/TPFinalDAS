@@ -38,7 +38,7 @@ namespace Controladora
             if (validarDuplicado == null)
             {
         //        producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
-                _contexto.Categorias.Update(producto.CategoriaDelProducto);
+                _contexto.Categorias.Update(producto.Categoria);
                 _contexto.SaveChanges();
             }
         }
@@ -49,7 +49,7 @@ namespace Controladora
             if (validarDuplicado == null)
             {
           //      producto.CategoriaDelProducto.AgregarProductosACategoria(producto);
-                _contexto.Categorias.Update(producto.CategoriaDelProducto);
+                _contexto.Categorias.Update(producto.Categoria);
                 _contexto.ProductosImportados.Add(producto);
                 _contexto.SaveChanges();
             }

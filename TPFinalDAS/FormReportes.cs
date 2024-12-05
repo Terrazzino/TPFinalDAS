@@ -32,7 +32,7 @@ namespace Vista
             {
                 Nro_Factura = f.Numero,
                 Fecha = f.Fecha,
-                Cliente = f.ClienteDeFactura.Nombre,
+                Cliente = f.Cliente.Nombre,
                 Total = f.Total,
 
             }).ToList();
