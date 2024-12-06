@@ -60,7 +60,7 @@ namespace Vista
                     Nombre = d.Producto.Nombre,
                     Cantidad = d.Cantidad,
                     PrecioUnitario = d.PrecioUnitario,
-                    SubTotal = d.Subtotal,
+                    SubTotal = d.CalcularSubtotalParaLoad(),
                 }).ToList();
 
                 dgvDetalles.DataSource = null;
@@ -81,7 +81,7 @@ namespace Vista
                 Nombre = d.Producto.Nombre,
                 Cantidad = d.Cantidad,
                 PrecioUnitario = d.PrecioUnitario,
-                SubTotal = d.Subtotal,
+                SubTotal = d.CalcularSubtotalParaLoad(),
             }).ToList();
 
             dgvDetalles.DataSource = null;

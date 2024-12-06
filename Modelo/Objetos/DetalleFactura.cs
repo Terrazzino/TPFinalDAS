@@ -13,12 +13,16 @@ namespace Modelo.Objetos
         public decimal PrecioUnitario { get; set; }
         
         public decimal Subtotal { get; set; }
-    //    public Factura FacturaDelDetalle { get; set; }
+
         public Producto Producto { get; set; }
 
         public void CalcularSubtotal()
         {
             Subtotal = Cantidad * PrecioUnitario;
+        }
+        public decimal CalcularSubtotalParaLoad()
+        {
+            return Cantidad * PrecioUnitario;
         }
     }
 }

@@ -18,6 +18,12 @@ namespace Controladora
         {
             return _context.Facturas.Include(c => c.Cliente).Include(d => d.DetallesDeFactura).OrderBy(f => f.Fecha).ToList().AsReadOnly();
         }
+
+        public ReadOnlyCollection<Factura> LeerFacturasConProductos()
+        {
+            return _context.Facturas.Include(c => c.Cliente).Include(d => d.DetallesDeFactura).ThenInclude(p=>p.Producto).ToList().AsReadOnly();
+
+        }
         public ReadOnlyCollection<ProductoReporte> LeerProductosMasVendidos()
         {
             //var listaFactura = _context.Facturas.Include(x => x.DetallesDeFactura).ThenInclude(p=>p.Producto);

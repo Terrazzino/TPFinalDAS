@@ -43,20 +43,35 @@ namespace Vista
 
         private void ActualizarGrillaProductosMasVendidos()
         {
-            //List<Producto> productos = new List<Producto>();
-            //foreach (DetalleFactura de in controladora.LeerProductosMasVendidos())
-            //{
-            //    productos.Add(de.ProductoDelDetalle);
-            //}
-            //var datosProductos = controladora.LeerProductosMasVendidos().Select(p => new
-            //{
-            //    Nombre = p.ProductoDelDetalle.Nombre,
-            //    Stock = p.ProductoDelDetalle.Stock,
-            //    Cantidad = p.Cantidad,
-            //    Total = p.Subtotal,
-            //}).ToList();
+            var facturas = controladora.LeerFacturasConProductos();
+            List<DetalleFactura> detalles = new List<DetalleFactura>();
+            foreach ( var f in facturas)
+            {
+                foreach(var d in f.DetallesDeFactura)
+                {
+                    var validarDuplicado = detalles.FirstOrDefault(x=>x.Producto.Nombre == d.Producto.Nombre);
+                    if (validarDuplicado != null)
+                    {
+                        validarDuplicado.Cantidad += d.Cantidad;
+                        validarDuplicado.Subtotal = d.Subtotal;
+                    }
+                    else
+                    {
+                        detalles.Add(d);
+                    }
+                    
+                }
+            }
+            var detallForm = detalles.Select(d => new
+            {
+                Producto = d.Producto.Nombre,
+                Cantidad = d.Cantidad,
+                Subtotal = d.CalcularSubtotalParaLoad(),
+
+            }).ToList();
+
             dgvProductosMasVendidos.DataSource = null;
-            dgvProductosMasVendidos.DataSource = controladora.LeerProductosMasVendidos();
+            dgvProductosMasVendidos.DataSource = detallForm.OrderByDescending(x=>x.Cantidad).ToList();
         }
     }
 }
